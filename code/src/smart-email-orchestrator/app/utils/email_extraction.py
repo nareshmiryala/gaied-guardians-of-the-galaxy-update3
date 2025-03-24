@@ -4,7 +4,7 @@ import re
 import email
 from email import policy
 from email.parser import BytesParser
-from app.utils.classification import advanced_classify_email, classify_email, generate_intent_and_reasoning
+from app.utils.classification import classify_email, generate_intent_and_reasoning
 from app.models import load_config
 
 CONFIG = load_config("config.json")

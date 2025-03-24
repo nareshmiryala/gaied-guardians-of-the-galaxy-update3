@@ -1,64 +1,381 @@
 {
     "llm_model_path": "path_to_local_LLM_model",
     "request_types": [
-        {"request_type": "Adjustment", "sub_request_types": []},
-        {"request_type": "AU Transfer", "sub_request_types": []},
-        {"request_type": "Closing Notice", "sub_request_types": ["Reallocation Fees", "Amendment Fees", "Reallocation Principal"]},
-        {"request_type": "Fee Payment", "sub_request_types": ["Ongoing Fee", "Letter of Credit Fee"]},
-        {"request_type": "Money Movement-Inbound", "sub_request_types": ["Principal", "Interest", "Principal + Interest", "Principal+Interest+Fee"]},
-        {"request_type": "Money Movement - Outbound", "sub_request_types": ["Timebound", "Foreign Currency"]},
-        {"request_type": "Loan Servicing", "sub_request_types": ["Loan Disbursement", "Loan Closure", "Loan Restructuring"]},
-        {"request_type": "Account Management", "sub_request_types": ["Account Opening", "Account Closure", "Account Update"]},
-        {"request_type": "Dispute Resolution", "sub_request_types": ["Unauthorized Transaction", "Billing Error", "Fraudulent Activity"]},
-        {"request_type": "General Inquiry", "sub_request_types": ["Product Information", "Interest Rates", "Branch Locator"]},
-        {"request_type": "Document Submission", "sub_request_types": ["KYC Update", "Income Proof", "Collateral Documents"]},
-        {"request_type": "Loans", "sub_request_types": ["Home Loan", "Car Loan", "Personal Loan"]},
-        {"request_type": "Accounts", "sub_request_types": ["Savings", "Current"]},
-        {"request_type": "Mutual Funds", "sub_request_types": ["Equity", "Debt"]}
+        {
+            "request_type": "Account Opening",
+            "sub_request_types": [
+                "Individual Account",
+                "Joint Account",
+                "Business Account"
+            ],
+            "department": "Customer Account Services"
+        },
+        {
+            "request_type": "Account Closure",
+            "sub_request_types": [
+                "Personal Account",
+                "Corporate Account"
+            ],
+            "department": "Customer Account Services"
+        },
+        {
+            "request_type": "Account Update",
+            "sub_request_types": [
+                "Address Change",
+                "Contact Information Update",
+                "Beneficiary Update"
+            ],
+            "department": "Customer Account Services"
+        },
+        {
+            "request_type": "Credit Card Application",
+            "sub_request_types": [
+                "Personal Credit Card",
+                "Corporate Credit Card"
+            ],
+            "department": "Credit Card Services"
+        },
+        {
+            "request_type": "Card Replacement",
+            "sub_request_types": [
+                "Lost/Stolen Card",
+                "Damaged Card"
+            ],
+            "department": "Card Operations"
+        },
+        {
+            "request_type": "Billing & Payments",
+            "sub_request_types": [
+                "Dispute Charge",
+                "Late Payment Waiver Request",
+                "Automatic Bill Payment Setup"
+            ],
+            "department": "Payments & Processing"
+        },
+        {
+            "request_type": "Credit Limit Management",
+            "sub_request_types": [
+                "Limit Increase Request",
+                "Limit Decrease Request"
+            ],
+            "department": "Credit Card Services"
+        },
+        {
+            "request_type": "Loan Application",
+            "sub_request_types": [
+                "Home Loan",
+                "Car Loan",
+                "Personal Loan",
+                "Business Loan"
+            ],
+            "department": "Loan Origination"
+        },
+        {
+            "request_type": "Loan Disbursement",
+            "sub_request_types": [
+                "Partial Disbursement",
+                "Full Disbursement"
+            ],
+            "department": "Loan Operations"
+        },
+        {
+            "request_type": "Loan Closure",
+            "sub_request_types": [
+                "Early Closure",
+                "Regular Closure"
+            ],
+            "department": "Loan Operations"
+        },
+        {
+            "request_type": "Loan Restructuring",
+            "sub_request_types": [
+                "Repayment Plan Modification",
+                "Interest Rate Adjustment"
+            ],
+            "department": "Loan Restructuring Team"
+        },
+        {
+            "request_type": "Unauthorized Transaction",
+            "sub_request_types": [],
+            "department": "Dispute & Fraud Resolution"
+        },
+        {
+            "request_type": "Billing Error",
+            "sub_request_types": [],
+            "department": "Dispute & Fraud Resolution"
+        },
+        {
+            "request_type": "Identity Theft Report",
+            "sub_request_types": [],
+            "department": "Fraud Investigation"
+        },
+        {
+            "request_type": "Document Submission",
+            "sub_request_types": [
+                "KYC Update",
+                "Income Proof",
+                "Collateral Documents"
+            ],
+            "department": "Document Verification"
+        },
+        {
+            "request_type": "Wire Transfer",
+            "sub_request_types": [
+                "Domestic Wire",
+                "International Wire"
+            ],
+            "department": "International Transfers"
+        },
+        {
+            "request_type": "Currency Exchange",
+            "sub_request_types": [],
+            "department": "Forex Services"
+        },
+        {
+            "request_type": "Mutual Funds",
+            "sub_request_types": [
+                "Equity Fund",
+                "Debt Fund",
+                "Hybrid Fund"
+            ],
+            "department": "Wealth Management"
+        },
+        {
+            "request_type": "Investment Advice",
+            "sub_request_types": [],
+            "department": "Wealth Advisory"
+        },
+        {
+            "request_type": "Corporate Account Setup",
+            "sub_request_types": [],
+            "department": "Corporate Banking Services"
+        },
+        {
+            "request_type": "Treasury Services",
+            "sub_request_types": [],
+            "department": "Corporate Treasury"
+        },
+        {
+            "request_type": "Mortgage",
+            "sub_request_types": [
+                "New Mortgage",
+                "Refinance",
+                "Payment Issues"
+            ],
+            "department": "Mortgage Lending"
+        },
+        {
+            "request_type": "Money Movement",
+            "sub_request_types": [
+                "Inbound",
+                "Outbound"
+            ],
+            "department": "Transaction Management"
+        },
+        {
+            "request_type": "Payment Reversal",
+            "sub_request_types": [],
+            "department": "Payments & Processing"
+        },
+        {
+            "request_type": "Insurance",
+            "sub_request_types": [
+                "Policy Application",
+                "Policy Renewal",
+                "Claim Submission"
+            ],
+            "department": "Insurance Services"
+        },
+        {
+            "request_type": "General Inquiry",
+            "sub_request_types": [
+                "Product Information",
+                "Interest Rate Inquiry",
+                "Branch Locator"
+            ],
+            "department": "Customer Support"
+        },
+        {
+            "request_type": "Account Security",
+            "sub_request_types": [
+                "Password Reset",
+                "Account Lock/Unlock"
+            ],
+            "department": "Security Operations"
+        },
+        {
+            "request_type": "Tax Documentation",
+            "sub_request_types": [
+                "Tax Payment Assistance",
+                "Compliance Reporting"
+            ],
+            "department": "Tax & Compliance"
+        },
+        {
+            "request_type": "Adjustment",
+            "sub_request_types": [],
+            "department": "Loan Operations"
+        },
+        {
+            "request_type": "AU Transfer",
+            "sub_request_types": [],
+            "department": "Treasury Services"
+        },
+        {
+            "request_type": "Closing Notice",
+            "sub_request_types": [
+                "Reallocation Fees",
+                "Amendment Fees",
+                "Reallocation Principal"
+            ],
+            "department": "Loan Operations"
+        },
+        {
+            "request_type": "Fee Payment",
+            "sub_request_types": [
+                "Ongoing Fee",
+                "Letter of Credit Fee"
+            ],
+            "department": "Payments & Processing"
+        },
+        {
+            "request_type": "Money Movement-Inbound",
+            "sub_request_types": [
+                "Principal",
+                "Interest",
+                "Principal + Interest",
+                "Principal+Interest+Fee"
+            ],
+            "department": "Transaction Management"
+        },
+        {
+            "request_type": "Money Movement - Outbound",
+            "sub_request_types": [
+                "Timebound",
+                "Foreign Currency"
+            ],
+            "department": "Transaction Management"
+        },
+        {
+            "request_type": "Loan Servicing",
+            "sub_request_types": [
+                "Loan Disbursement",
+                "Loan Closure",
+                "Loan Restructuring"
+            ],
+            "department": "Loan Operations"
+        },
+        {
+            "request_type": "Accounts",
+            "sub_request_types": [
+                "Savings",
+                "Current"
+            ],
+            "department": "Customer Account Services"
+        }
     ],
     "email_processing": {
-        "extract_fields": ["amount", "due_date", "customer_id", "account_number", "loan_number"]
+        "extract_fields": [
+            "amount",
+            "due_date",
+            "customer_id",
+            "account_number",
+            "loan_number"
+        ]
     },
-    "department_keywords": {
-        "Mortgage Lending": ["Home loan", "Mortgage", "HELOC", "Refinance", "Property"],
-        "Auto Loans": ["Car loan", "Vehicle financing", "Auto loan", "Lease"],
-        "Personal Loans": ["Personal loan", "Unsecured loan", "Quick cash"],
-        "Student Loans": ["Student loan", "Education financing", "Tuition"],
-        "Credit Card Lending": ["Credit card", "Card limit", "Rewards", "Cashback"],
-        "Small Business Lending": ["Small business", "SBA loan", "Business financing"],
-        "Commercial Real Estate": ["Commercial property", "CRE loan", "Office financing"],
-        "Corporate Lending": ["Corporate loan", "Syndicated loan", "Enterprise financing"],
-        "Asset-Based Lending": ["Asset-based loan", "Inventory financing", "Receivables"],
-        "Equipment Financing": ["Equipment loan", "Machine financing", "Asset lease"],
-        "Public Finance": ["Municipal loan", "Public finance", "Government funding"],
-        "Infrastructure Financing": ["Infrastructure loan", "Energy financing", "Project loan"],
-        "Government-Backed Loans": ["SBA loan", "VA loan", "Government-backed loan"],
-        "Loan Servicing": ["Payment issue", "Loan servicing", "Update information"],
-        "Default & Collections": ["Overdue", "Missed payment", "Collections", "Delinquent"],
-        "Loan Modifications": ["Modify loan", "Restructure loan", "Change repayment"],
-        "Credit Risk Management": ["Credit check", "Risk assessment", "Loan eligibility"],
-        "Regulatory Compliance": ["Compliance", "Regulations", "Loan policy"],
-        "Fraud Detection": ["Fraud", "Unauthorized", "Suspicious loan activity"]
-    },
-    "department_request_mapping": {
-        "Mortgage Lending": ["Home Loan", "Refinance"],
-        "Auto Loans": ["Car Loan", "Vehicle financing"],
-        "Personal Loans": ["Personal Loan"],
-        "Student Loans": ["Student Loan"],
-        "Credit Card Lending": ["Credit Card"],
-        "Small Business Lending": ["Small Business Loan"],
-        "Commercial Real Estate": ["Commercial Property Loan"],
-        "Corporate Lending": ["Corporate Loan"],
-        "Asset-Based Lending": ["Asset-Based Loan"],
-        "Equipment Financing": ["Equipment Loan"],
-        "Public Finance": ["Municipal Loan"],
-        "Infrastructure Financing": ["Infrastructure Loan"],
-        "Government-Backed Loans": ["SBA Loan", "VA Loan"],
-        "Loan Servicing": ["Loan Servicing"],
-        "Default & Collections": ["Collections"],
-        "Loan Modifications": ["Loan Modification"],
-        "Credit Risk Management": ["Credit Risk"],
-        "Regulatory Compliance": ["Compliance"],
-        "Fraud Detection": ["Fraud"]
-    }
+    "Mortgage Lending": [
+        "Home loan",
+        "Mortgage",
+        "HELOC",
+        "Refinance",
+        "Property"
+    ],
+    "Auto Loans": [
+        "Car loan",
+        "Vehicle financing",
+        "Auto loan",
+        "Lease"
+    ],
+    "Personal Loans": [
+        "Personal loan",
+        "Unsecured loan",
+        "Quick cash"
+    ],
+    "Credit Card Lending": [
+        "Credit card",
+        "Card limit",
+        "Rewards",
+        "Cashback"
+    ],
+    "Small Business Lending": [
+        "Small business",
+        "SBA loan",
+        "Business financing"
+    ],
+    "Commercial Real Estate": [
+        "Commercial property",
+        "CRE loan",
+        "Office financing"
+    ],
+    "Corporate Lending": [
+        "Corporate loan",
+        "Syndicated loan",
+        "Enterprise financing"
+    ],
+    "Asset-Based Lending": [
+        "Asset-based loan",
+        "Inventory financing",
+        "Receivables"
+    ],
+    "Equipment Financing": [
+        "Equipment loan",
+        "Machine financing",
+        "Asset lease"
+    ],
+    "Public Finance": [
+        "Municipal loan",
+        "Public finance",
+        "Government funding"
+    ],
+    "Infrastructure Financing": [
+        "Infrastructure loan",
+        "Energy financing",
+        "Project loan"
+    ],
+    "Government-Backed Loans": [
+        "SBA loan",
+        "VA loan",
+        "Government-backed loan"
+    ],
+    "Loan Servicing": [
+        "Payment issue",
+        "Loan servicing",
+        "Update information"
+    ],
+    "Default & Collections": [
+        "Overdue",
+        "Missed payment",
+        "Collections",
+        "Delinquent"
+    ],
+    "Loan Modifications": [
+        "Modify loan",
+        "Restructure loan",
+        "Change repayment"
+    ],
+    "Credit Risk Management": [
+        "Credit check",
+        "Risk assessment",
+        "Loan eligibility"
+    ],
+    "Regulatory Compliance": [
+        "Compliance",
+        "Regulations",
+        "Loan policy"
+    ],
+    "Fraud Detection": [
+        "Fraud",
+        "Unauthorized",
+        "Suspicious loan activity"
+    ]
 }
