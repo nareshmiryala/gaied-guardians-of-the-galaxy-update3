@@ -31,17 +31,13 @@ def get_email_body(msg):
     return msg.get_payload(decode=True).decode(errors="ignore")
 
 def extract_attachments(msg):
-    """Extract attachment filenames and their content."""
+    """Extract attachment filenames."""
     attachments = []
     for part in msg.walk():
         if part.get("Content-Disposition") is not None:
             filename = part.get_filename()
             if filename:
-                attachment_content = part.get_payload(decode=True)
-                attachments.append({
-                    "filename": filename,
-                    "content": attachment_content.decode(errors="ignore")
-                })
+                attachments.append(filename)
     return attachments
 
 def extract_fields(email_body):
@@ -74,21 +70,17 @@ def process_emails(upload_folder, config):
         if filename.endswith(".eml"):
             eml_path = os.path.join(upload_folder, filename)
             email_data = extract_email_details(eml_path)
-            classification = classify_email(email_data, upload_folder)
-            # classification = advanced_classify_email(email_data)
+            classification = classify_email(email_data,upload_folder)
+            #classification = advanced_classify_email(email_data)
             extracted_fields = extract_fields(email_data["body"])
             sender_intent, reasoning = generate_intent_and_reasoning(email_data["body"])
+            
 
             result = {
-                "file": filename,
-                "subject": email_data["subject"],
-                "request_type": classification["request_type"],
-                "sub_request_type": classification["sub_request_type"],
-                "confidence_score": classification["confidence_score"],
-                "attachments": email_data["attachments"],
-                "senders_intent": sender_intent,
-                "department": classification["department"],
-                "reasoning": reasoning
+               "file": filename, "subject": email_data["subject"],
+                "request_type": classification["request_type"], "sub_request_type": classification["sub_request_type"],
+                "confidence_score": classification["confidence_score"], "attachments": email_data["attachments"],
+                "senders_intent": sender_intent, "department": classification["department"],"reasoning": reasoning
             }
 
             results.append(result)

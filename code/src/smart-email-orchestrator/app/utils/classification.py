@@ -29,20 +29,6 @@ def identify_department(email_body):
     detected_department = result["labels"][0]
     return detected_department
 
-def extract_text_from_attachment(attachment_path):
-    """Extracts text from an attachment based on its file type."""
-    try:
-        _, file_extension = os.path.splitext(attachment_path)
-        if file_extension.lower() in ['.png', '.jpg', '.jpeg', '.pdf']:
-            return extract_text_from_image(attachment_path)
-        elif file_extension.lower() == '.txt':
-            with open(attachment_path, 'r', encoding='utf-8', errors='ignore') as f:
-                return f.read()
-        return None
-    except Exception as e:
-        print(f"Error extracting text from attachment: {e}")
-        return None
-    
 def extract_text_from_attachment(file_path):
     try:
         ext = os.path.splitext(file_path)[1].lower()
@@ -59,6 +45,8 @@ def extract_text_from_attachment(file_path):
     except Exception as e:
         print(f"Error extracting text from {file_path}: {e}")
     return ""
+    
+
 
 def classify_email(email_data, UPLOAD_FOLDER):
     """Classifies emails based on request types using a language model."""
@@ -68,8 +56,11 @@ def classify_email(email_data, UPLOAD_FOLDER):
 
     content_sources = [email_data["body"]]
     for attachment in email_data["attachments"]:
-        content_sources.append(attachment["content"])
+        attachment_path = os.path.join(UPLOAD_FOLDER, attachment)
+        content_sources.append(extract_text_from_attachment(attachment_path))
     candidate_labels = [req["request_type"] for req in CONFIG["request_types"]]
+    if not candidate_labels:
+        return {"request_type": "Unknown", "sub_request_type": "Unknown", "confidence_score": 0}
 
     for content in content_sources:
         if content:
@@ -78,11 +69,12 @@ def classify_email(email_data, UPLOAD_FOLDER):
             confidence_score = result["scores"][0] * 100
 
             for req in CONFIG["request_types"]:
-                if req["request_type"] == detected_request_type:
-                    sub_candidate_labels = req["sub_request_types"]
-                    sub_result = classifier(content, sub_candidate_labels)
+                if req["request_type"] == detected_request_type and req["sub_request_types"]:
+                    sub_result = classifier(content, req["sub_request_types"])
                     detected_sub_request_type = sub_result["labels"][0]
                     confidence_score += sub_result["scores"][0] * 30
+                    print("sub_result")
+                    print(sub_result)
                     break
 
     department = identify_department(email_data["body"])
